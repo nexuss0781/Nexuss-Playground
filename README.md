@@ -1,37 +1,43 @@
 # 🌌 Nexus Pro
 
-> **Next-Generation Web Interface & Search Engine Proxy**  
-> A modern, responsive, and privacy-focused web application featuring a sleek UI, real-time chat capabilities, and a secure search proxy.
+> **Advanced AI Chat Interface powered by Puter**  
+> A beautiful, zero-backend web application featuring multi-model AI routing (Claude, Gemini, GPT), real-time web search, code intelligence, and local-first data persistence.
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Status](https://img.shields.io/badge/status-production-ready-green.svg)]()
+[![Status](https://img.shields.io/badge/status-production--ready-green.svg)]()
+[![Puter](https://img.shields.io/badge/Powered%20by-Puter-7b68ee.svg)](https://puter.com/)
 [![PHP](https://img.shields.io/badge/PHP-7.4+-purple.svg)]()
-[![JavaScript](https://img.shields.io/badge/JS-ES6+-yellow.svg)]()
 
 ---
 
 ## ✨ Features
 
-### 🎨 Modern User Interface
-- **Glassmorphism Design**: Beautiful translucent cards with blur effects.
-- **Responsive Layout**: Fully adaptive mobile-first design.
-- **Dark/Light Mode**: Seamless theme switching with persistence.
+### 🤖 Multi-Model AI Support
+- **Claude · Gemini · GPT**: Seamlessly switch between top AI models with a single click.
+- **Smart Routing**: Automatic model selection based on task type.
+- **No API Keys Required**: Leverages Puter's unified API for zero-configuration access.
+
+### 🔍 Integrated Web Search
+- **DuckDuckGo Proxy**: Built-in PHP proxy for private, uncensored web searches.
+- **Real-Time Results**: Fetch current information to enhance AI responses.
+- **5-Minute Caching**: File-based caching reduces redundant requests.
+
+### 💻 Code Intelligence
+- **Syntax Highlighting**: Beautiful code blocks with Highlight.js.
+- **Multi-Language Support**: Auto-detection for 100+ programming languages.
+- **Math Rendering**: LaTeX support via KaTeX for scientific notation.
+
+### 🎨 Premium UI/UX
+- **Glassmorphism Design**: Translucent cards with backdrop blur effects.
+- **Responsive Layout**: Mobile-first design that adapts to any screen.
 - **Smooth Animations**: Hardware-accelerated transitions and micro-interactions.
+- **Markdown Support**: Rich text rendering with marked.js.
 
-### 🔒 Privacy-First Search
-- **DuckDuckGo Proxy**: Secure backend proxy for anonymous searches.
-- **Server-Side Caching**: Redis-compatible file caching for faster repeated queries.
-- **CORS Handling**: Configurable cross-origin resource sharing.
-
-### 💬 Real-Time Chat Engine
-- **IndexedDB Storage**: Local-first data persistence for offline capability.
-- **Context Awareness**: Intelligent conversation history management.
-- **Tool Integration**: Extensible plugin system for custom commands.
-
-### 🛠️ Developer Experience
-- **Modular Architecture**: Clean separation of concerns (Core, Tools, UI).
-- **Zero Dependencies**: Vanilla JS/CSS/PHP for maximum performance.
-- **Easy Deployment**: Drop-in ready for any Apache/Nginx + PHP server.
+### 🔐 Privacy & Persistence
+- **Zero Backend**: No database server required—runs on any PHP host.
+- **IndexedDB Storage**: Local-first chat history persists across sessions.
+- **Puter Authentication**: Secure OAuth login via Puter.com.
+- **InfinityFree Ready**: Compatible with free hosting providers.
 
 ---
 
@@ -39,16 +45,16 @@
 
 ```text
 Nexuss-Playground/
-├── index.html              # Main entry point & UI structure
+├── index.html              # Main entry: Auth, Chat UI, Model Selector
 ├── assets/
 │   ├── css/
-│   │   └── nexus-pro.css   # Core styles, variables, animations
+│   │   └── nexus-pro.css   # Glassmorphism styles, animations, responsive
 │   └── js/
-│       ├── nexus-core.js   # App logic, DB, Chat engine
-│       └── nexus-tools.js  # Utility functions, Search manager
+│       ├── nexus-core.js   # Chat engine, IndexedDB, Puter auth, model routing
+│       └── nexus-tools.js  # Web search, code tools, utility functions
 ├── api/
-│   └── search-proxy.php    # Backend search proxy & cache handler
-├── cache/                  # Writable directory for search cache
+│   └── search-proxy.php    # DuckDuckGo proxy with file caching
+├── cache/                  # Writable directory for search result cache
 └── README.md               # This file
 ```
 
@@ -57,8 +63,9 @@ Nexuss-Playground/
 ## 🚀 Quick Start
 
 ### Prerequisites
-- A web server with **PHP 7.4+** support (Apache, Nginx, or Caddy).
+- A web server with **PHP 7.4+** (Apache, Nginx, or shared hosting).
 - Write permissions for the `cache/` directory.
+- A [Puter.com](https://puter.com/) account (free) for authentication.
 
 ### Installation
 
@@ -68,43 +75,147 @@ Nexuss-Playground/
    cd Nexuss-Playground
    ```
 
-2. **Set Permissions**
-   Ensure the `cache` folder is writable by the web server:
+2. **Set Cache Permissions**
    ```bash
    chmod 755 cache
-   # Or for local development
+   # For local development or if permission issues occur:
    chmod 777 cache
    ```
 
-3. **Launch**
-   Open `index.html` in your browser or serve via PHP:
-   ```bash
-   php -S localhost:8000
-   ```
-   Navigate to `http://localhost:8000`.
+3. **Deploy**
+   - Upload all files to your web server (public_html or equivalent).
+   - Or run locally with PHP's built-in server:
+     ```bash
+     php -S localhost:8000
+     ```
+   - Navigate to `http://localhost:8000` or your domain.
+
+4. **Sign In**
+   - Click "Sign In with Puter" to authenticate.
+   - Start chatting with Claude, Gemini, or GPT!
 
 ---
 
 ## ⚙️ Configuration
 
 ### Search Proxy (`api/search-proxy.php`)
-- **Cache Duration**: Modify `$cache_ttl` to adjust how long search results are stored.
-- **Allowed Origins**: Edit the `$allowed_origins` array to restrict API access.
+| Setting | Default | Description |
+|---------|---------|-------------|
+| `$cacheTTL` | `300` (5 min) | Cache duration in seconds |
+| CORS Headers | `*` | Allow all origins (restrict for production) |
 
-### Frontend (`assets/js/nexus-core.js`)
-- **API Endpoint**: Update `SEARCH_API_URL` if moving the proxy to a different path.
-- **Theme**: Default theme preference can be set in `localStorage`.
+### Frontend Customization
+- **Model Order**: Edit `.model-selector` buttons in `index.html`.
+- **Theme Colors**: Modify CSS variables in `assets/css/nexus-pro.css`.
+- **Token Limits**: Adjust context window in `nexus-core.js`.
 
 ---
 
 ## 🧩 Key Components
 
-| Component | Description |
-| :--- | :--- |
-| **`nexus-core.js`** | The brain of the app. Handles IndexedDB, state management, and the chat interface logic. |
-| **`nexus-tools.js`** | The utility belt. Manages search requests, formatting, and helper functions. |
-| **`search-proxy.php`** | The gatekeeper. Fetches external search results securely and manages server-side caching. |
-| **`nexus-pro.css`** | The look & feel. Defines CSS variables, glassmorphism classes, and responsive breakpoints. |
+| File | Responsibility |
+|------|----------------|
+| `index.html` | Auth screen, app shell, sidebar, chat interface, modals |
+| `nexus-core.js` | Puter auth, IndexedDB CRUD, chat state, model switching, markdown rendering |
+| `nexus-tools.js` | Tool manager, web search API, code analysis helpers |
+| `search-proxy.php` | POST endpoint for DuckDuckGo scraping, JSON response, cache logic |
+| `nexus-pro.css` | CSS variables, glassmorphism, responsive breakpoints, animations |
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend**: HTML5, CSS3 (Custom Properties), Vanilla ES6+ JavaScript
+- **Backend**: PHP 7.4+ (stateless proxy only)
+- **Libraries**: 
+  - [Puter.js](https://docs.puter.com/) — Authentication & AI API
+  - [Marked](https://marked.js.org/) — Markdown parsing
+  - [Highlight.js](https://highlightjs.org/) — Syntax highlighting
+  - [KaTeX](https://katex.org/) — Math typesetting
+- **Storage**: Browser IndexedDB + File-based cache
+
+---
+
+## 📱 Browser Support
+
+| Browser | Version |
+|---------|---------|
+| Chrome | 90+ |
+| Firefox | 88+ |
+| Safari | 14+ |
+| Edge | 90+ |
+
+*Requires modern browser features: IndexedDB, Fetch API, ES6 Modules*
+
+---
+
+## 🏗️ Deployment Guide
+
+### Shared Hosting (InfinityFree, 000webhost, etc.)
+1. Upload all files via FTP to `htdocs` or `public_html`.
+2. Ensure `cache/` folder exists and is writable.
+3. Access your domain and log in with Puter.
+
+### VPS / Dedicated Server
+```bash
+# Clone repo
+git clone https://github.com/nexuss0781/Nexuss-Playground.git /var/www/nexus
+cd /var/www/nexus
+
+# Set permissions
+chown -R www-data:www-data cache/
+chmod 755 cache/
+
+# Configure Nginx/Apache to serve PHP
+```
+
+### Docker (Optional)
+```dockerfile
+FROM php:8.2-apache
+COPY . /var/www/html/
+RUN chown -R www-data:www-data /var/www/html/cache
+EXPOSE 80
+```
+
+---
+
+## 🔒 Security Notes
+
+- The search proxy sanitizes input (max 200 chars, MD5 cache keys).
+- Puter handles all authentication tokens securely.
+- No sensitive data is stored server-side.
+- For production, restrict CORS origins in `search-proxy.php`.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository.
+2. Create a feature branch (`git checkout -b feature/amazing-feature`).
+3. Commit your changes (`git commit -m 'Add amazing feature'`).
+4. Push to the branch (`git push origin feature/amazing-feature`).
+5. Open a Pull Request.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🙏 Acknowledgments
+
+- [Puter](https://puter.com/) for the incredible zero-backend cloud OS.
+- DuckDuckGo for privacy-focused search results.
+- All open-source libraries that make this possible.
+
+---
+
+**Built with ❤️ by nexuss0781**  
+*Experience the future of AI interfaces—no backend required.*
 
 ---
 
