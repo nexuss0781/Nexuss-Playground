@@ -1,0 +1,30 @@
+```
+# Environment files
+.env
+.env.local
+.env.*
+
+# Logs
+*.log
+
+# Dependencies
+vendor/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+build/
+dist/
+*.o
+*.obj
+*.out
+```
